@@ -1,0 +1,623 @@
+/* Reset e configurações básicas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Estrelas animadas no fundo */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50%;
+    animation: twinkle 3s ease-in-out infinite;
+}
+
+.star:nth-child(1) { top: 10%; left: 10%; width: 2px; height: 2px; animation-delay: 0s; }
+.star:nth-child(2) { top: 20%; left: 20%; width: 1px; height: 1px; animation-delay: 0.5s; }
+.star:nth-child(3) { top: 30%; left: 30%; width: 3px; height: 3px; animation-delay: 1s; }
+.star:nth-child(4) { top: 40%; left: 40%; width: 2px; height: 2px; animation-delay: 1.5s; }
+.star:nth-child(5) { top: 50%; left: 50%; width: 1px; height: 1px; animation-delay: 2s; }
+.star:nth-child(6) { top: 60%; left: 60%; width: 2px; height: 2px; animation-delay: 2.5s; }
+.star:nth-child(7) { top: 70%; left: 70%; width: 3px; height: 3px; animation-delay: 3s; }
+.star:nth-child(8) { top: 80%; left: 80%; width: 1px; height: 1px; animation-delay: 3.5s; }
+.star:nth-child(9) { top: 90%; left: 90%; width: 2px; height: 2px; animation-delay: 4s; }
+.star:nth-child(10) { top: 15%; left: 85%; width: 1px; height: 1px; animation-delay: 0.3s; }
+.star:nth-child(11) { top: 25%; left: 75%; width: 2px; height: 2px; animation-delay: 0.8s; }
+.star:nth-child(12) { top: 35%; left: 65%; width: 3px; height: 3px; animation-delay: 1.3s; }
+.star:nth-child(13) { top: 45%; left: 55%; width: 1px; height: 1px; animation-delay: 1.8s; }
+.star:nth-child(14) { top: 55%; left: 45%; width: 2px; height: 2px; animation-delay: 2.3s; }
+.star:nth-child(15) { top: 65%; left: 35%; width: 3px; height: 3px; animation-delay: 2.8s; }
+.star:nth-child(16) { top: 75%; left: 25%; width: 1px; height: 1px; animation-delay: 3.3s; }
+.star:nth-child(17) { top: 85%; left: 15%; width: 2px; height: 2px; animation-delay: 3.8s; }
+.star:nth-child(18) { top: 95%; left: 5%; width: 1px; height: 1px; animation-delay: 4.3s; }
+.star:nth-child(19) { top: 5%; left: 95%; width: 3px; height: 3px; animation-delay: 0.7s; }
+.star:nth-child(20) { top: 95%; left: 95%; width: 2px; height: 2px; animation-delay: 1.2s; }
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Conteúdo principal */
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    z-index: 2;
+    position: relative;
+}
+
+/* Título principal com efeito neon */
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    text-align: center;
+    max-width: 800px;
+}
+
+.neon-text {
+    color: #ff2222;
+    text-shadow: 
+        0 0 1px #ff2222,
+        0 0 3px #ff2222,
+        0 0 6px #ff2222,
+        0 0 9px #fff1,
+        0 0 12px #ff2222;
+    animation: neon-pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes neon-pulse {
+    from {
+        text-shadow: 
+            0 0 1px #ff2222,
+            0 0 3px #ff2222,
+            0 0 6px #ff2222,
+            0 0 9px #fff1,
+            0 0 12px #ff2222;
+    }
+    to {
+        text-shadow: 
+            0 0 0.5px #ff2222,
+            0 0 1.5px #ff2222,
+            0 0 3px #ff2222,
+            0 0 4.5px #fff1,
+            0 0 6px #ff2222;
+    }
+}
+
+/* Subtítulo */
+.subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Contagem Regressiva */
+.countdown-container {
+    margin: 2rem 0;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.countdown-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.countdown {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+}
+
+.countdown-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ff2222;
+    text-shadow: 
+        0 0 5px #ff2222,
+        0 0 10px #ff2222,
+        0 0 15px #ff2222;
+    animation: countdown-pulse 1s ease-in-out infinite alternate;
+    display: block;
+    line-height: 1;
+}
+
+.countdown-label {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #ffffff;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+@keyframes countdown-pulse {
+    from {
+        text-shadow: 
+            0 0 5px #ff2222,
+            0 0 10px #ff2222,
+            0 0 15px #ff2222;
+    }
+    to {
+        text-shadow: 
+            0 0 2px #ff2222,
+            0 0 5px #ff2222,
+            0 0 8px #ff2222;
+    }
+}
+
+/* Botão neon */
+.neon-button {
+    background: transparent;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.2),
+        0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+.neon-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.5),
+        0 0 40px rgba(255, 255, 255, 0.3),
+        0 0 60px rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.neon-button:active {
+    transform: translateY(0);
+}
+
+/* Elementos flutuantes */
+.floating-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-element {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.3;
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+.floating-element:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+.floating-element:nth-child(3) { top: 60%; left: 5%; animation-delay: 2s; }
+.floating-element:nth-child(4) { top: 70%; right: 10%; animation-delay: 3s; }
+.floating-element:nth-child(5) { top: 40%; left: 20%; animation-delay: 4s; }
+.floating-element:nth-child(6) { top: 80%; right: 20%; animation-delay: 5s; }
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+        opacity: 0.6;
+    }
+}
+
+/* Navegação */
+.navigation {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    z-index: 10;
+}
+
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 1px solid transparent;
+}
+
+.nav-link:hover {
+    border-color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Galeria com layout alternado */
+.gallery-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-row {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-bottom: 4rem;
+    padding: 0 2rem;
+}
+
+.gallery-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.gallery-item {
+    flex: 1;
+    aspect-ratio: 1;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    min-height: 300px;
+    position: relative;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    border-color: #ffffff;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+/* Estilos para imagens reais */
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover .gallery-image {
+    transform: scale(1.1);
+}
+
+/* Overlay para as imagens - menos opaco e só no rodapé da imagem */
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.5));
+    color: #fff;
+    padding: 1rem 0.5rem 0.5rem;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    opacity: 1;
+    border-radius: 0 0 15px 15px;
+    pointer-events: none;
+}
+
+/* Placeholder para quando não há imagem */
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #ffffff;
+    border-radius: 15px;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+}
+
+/* Cards de texto */
+.text-card {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    min-height: 200px;
+}
+
+.text-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-5px);
+}
+
+.text-card.special-message {
+    background: linear-gradient(135deg, rgba(0, 255, 0, 0.1) 0%, rgba(0, 255, 0, 0.05) 100%);
+    border-color: rgba(0, 255, 0, 0.3);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+}
+
+.text-card.special-message:hover {
+    background: linear-gradient(135deg, rgba(0, 255, 0, 0.15) 0%, rgba(0, 255, 0, 0.1) 100%);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+}
+
+.quote-text {
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.6;
+    text-align: center;
+    font-style: italic;
+    color: #ffffff;
+}
+
+/* Seção de Homenagens Individuais */
+.individual-homenagens-section {
+    text-align: center;
+    padding: 4rem 2rem;
+    margin: 3rem 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.individual-homenagens-btn {
+    background: linear-gradient(45deg, #ff0000, #ff4444);
+    border: 2px solid #ff0000;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    transition: all 0.3s ease;
+}
+
+.individual-homenagens-btn:hover {
+    background: linear-gradient(45deg, #ff4444, #ff6666);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* Rodapé */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .title {
+        font-size: 1.8rem;
+        padding: 0 1rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .countdown-container {
+        margin: 1.5rem 0;
+        padding: 1.5rem;
+    }
+    
+    .countdown-title {
+        font-size: 1.2rem;
+    }
+    
+    .countdown {
+        gap: 1rem;
+    }
+    
+    .countdown-item {
+        min-width: 60px;
+    }
+    
+    .countdown-number {
+        font-size: 2rem;
+    }
+    
+    .countdown-label {
+        font-size: 0.8rem;
+    }
+    
+    .neon-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+    
+    .gallery-row {
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 3rem;
+        padding: 0 1rem;
+    }
+    
+    .gallery-row.reverse {
+        flex-direction: column;
+    }
+    
+    .gallery-item {
+        min-height: 250px;
+    }
+    
+    .text-card {
+        padding: 2rem 1rem;
+        min-height: 150px;
+    }
+    
+    .quote-text {
+        font-size: 1.2rem;
+    }
+    
+    .footer-text {
+        font-size: 1.2rem;
+    }
+    
+    .navigation {
+        top: 1rem;
+        left: 1rem;
+    }
+    
+    .image-overlay {
+        opacity: 1;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    
+    .individual-homenagens-section {
+        padding: 2rem 1rem;
+        margin: 2rem 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .individual-homenagens-btn {
+        font-size: 1rem;
+        padding: 12px 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.5rem;
+    }
+    
+    .content {
+        padding: 1rem;
+    }
+    
+    .countdown-container {
+        padding: 1rem;
+    }
+    
+    .countdown {
+        gap: 0.5rem;
+    }
+    
+    .countdown-item {
+        min-width: 50px;
+    }
+    
+    .countdown-number {
+        font-size: 1.5rem;
+    }
+    
+    .countdown-label {
+        font-size: 0.7rem;
+    }
+    
+    .floating-element {
+        font-size: 1.5rem;
+    }
+    
+    .gallery-item {
+        min-height: 200px;
+    }
+    
+    .text-card {
+        padding: 1.5rem 1rem;
+        min-height: 120px;
+    }
+    
+    .quote-text {
+        font-size: 1.1rem;
+    }
+} 

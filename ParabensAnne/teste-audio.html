@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Áudio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        button {
+            background: #ff0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #cc0000;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success { background: rgba(0,255,0,0.2); }
+        .error { background: rgba(255,0,0,0.2); }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Teste de Áudio</h1>
+        
+        <div id="status"></div>
+        
+        <h3>Teste Manual:</h3>
+        <button onclick="testAudio()">Testar Áudio</button>
+        <button onclick="testPlayer()">Testar Player</button>
+        <button onclick="checkFiles()">Verificar Arquivos</button>
+        
+        <h3>Controles:</h3>
+        <button onclick="playMusic()">Play</button>
+        <button onclick="pauseMusic()">Pause</button>
+        <button onclick="nextMusic()">Próxima</button>
+        
+        <div id="info"></div>
+    </div>
+
+    <script>
+        let audioPlayer = null;
+        
+        function log(message, type = 'info') {
+            const status = document.getElementById('status');
+            const div = document.createElement('div');
+            div.className = `status ${type}`;
+            div.textContent = message;
+            status.appendChild(div);
+            console.log(message);
+        }
+        
+        function testAudio() {
+            const audio = new Audio();
+            audio.src = 'musicas/ANAVITÓRIA - Ai, Amor (Audio).mp3';
+            
+            audio.addEventListener('canplaythrough', () => {
+                log('✅ Áudio carregado com sucesso!', 'success');
+                audio.play().then(() => {
+                    log('✅ Áudio tocando!', 'success');
+                    setTimeout(() => audio.pause(), 3000);
+                }).catch(e => {
+                    log('❌ Erro ao tocar áudio: ' + e.message, 'error');
+                });
+            });
+            
+            audio.addEventListener('error', (e) => {
+                log('❌ Erro ao carregar áudio: ' + e.message, 'error');
+            });
+            
+            audio.load();
+        }
+        
+        function testPlayer() {
+            if (typeof AudioPlayer !== 'undefined') {
+                audioPlayer = new AudioPlayer();
+                log('✅ Player criado com sucesso!', 'success');
+            } else {
+                log('❌ Classe AudioPlayer não encontrada', 'error');
+            }
+        }
+        
+        function checkFiles() {
+            const files = [
+                'musicas/ANAVITÓRIA - Ai, Amor (Audio).mp3',
+                'musicas/Lord Huron - The Night We Met (Official Audio).mp3',
+                'musicas/The Cinematic Orchestra - \'To Build A Home\' (Official Video).mp3',
+                'musicas/Ayrton Senna - Tema da vitória.mp3'
+            ];
+            
+            files.forEach(file => {
+                fetch(file, { method: 'HEAD' })
+                    .then(response => {
+                        if (response.ok) {
+                            log('✅ Arquivo encontrado: ' + file, 'success');
+                        } else {
+                            log('❌ Arquivo não encontrado: ' + file, 'error');
+                        }
+                    })
+                    .catch(e => {
+                        log('❌ Erro ao verificar arquivo: ' + file, 'error');
+                    });
+            });
+        }
+        
+        function playMusic() {
+            if (audioPlayer) {
+                audioPlayer.play();
+                log('🎵 Tocando música...', 'success');
+            } else {
+                log('❌ Player não inicializado', 'error');
+            }
+        }
+        
+        function pauseMusic() {
+            if (audioPlayer) {
+                audioPlayer.pause();
+                log('⏸️ Música pausada', 'success');
+            } else {
+                log('❌ Player não inicializado', 'error');
+            }
+        }
+        
+        function nextMusic() {
+            if (audioPlayer) {
+                audioPlayer.nextTrack();
+                log('⏭️ Próxima música', 'success');
+            } else {
+                log('❌ Player não inicializado', 'error');
+            }
+        }
+        
+        // Carregar o player quando a página carregar
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                if (typeof AudioPlayer !== 'undefined') {
+                    audioPlayer = new AudioPlayer();
+                    log('✅ Player inicializado automaticamente', 'success');
+                } else {
+                    log('❌ Classe AudioPlayer não encontrada', 'error');
+                }
+            }, 1000);
+        });
+    </script>
+    
+    <script src="audio-player.js"></script>
+</body>
+</html> 
